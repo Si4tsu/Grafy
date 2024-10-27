@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://428tt7c0xcwt"]
+
+[ext_resource type="Script" path="res://g_node.gd" id="1_ls0bi"]
+[ext_resource type="Script" path="res://world.gd" id="1_mmf84"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_mmf84")
+
+[node name="GNode" type="Node2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("1_ls0bi")
