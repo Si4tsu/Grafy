@@ -16,7 +16,7 @@ func _draw() -> void:
 	else:
 		draw_circle(Vector2.ZERO, size, Color.CRIMSON)
 	
-	draw_circle(Vector2.ZERO, size, Color.BLACK, false, 2)
+	#draw_circle(Vector2.ZERO, size, Color.BLACK, false, 2)s
 
 func select(color: Color = Color.GREEN) -> void:
 	is_selected = true
