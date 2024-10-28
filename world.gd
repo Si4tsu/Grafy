@@ -147,6 +147,34 @@ func bfs_step() -> void:
 		selected_node.select(Color.BLUE_VIOLET)
 		selected_node = null
 
+func get_connected_graph() -> Array:
+	var graph := []
+	var thinking := true
+	
+	while thinking:
+		if bfs_queue:
+			if bfs_index > (len(bfs_queue) - 1):
+				bfs_queue = []
+				thinking = false
+			
+			var current_node: GNode = bfs_queue[bfs_index]
+			
+			for n in current_node.get_neighbours():
+				if bfs_queue.find(n) < 0:
+					bfs_queue.append(n)
+					graph.append(n)
+			
+			bfs_index += 1
+		
+		elif selected_node:
+			bfs_index = 0
+			bfs_queue.append(selected_node)
+			graph.append(selected_node)
+			selected_node = null
+	
+	return graph
+
+
 func get_all_nodes() -> Array:
 	var nodes := []
 	for child in get_children():
@@ -170,12 +198,11 @@ func find_path(start_node: GNode, end_node: GNode) -> Array:
 		return []
 	
 	var path := []
-	var queue := get_all_nodes()
+	var queue := get_connected_graph()
 	var distances := {}
 	distances[start_node] = 0
 	var ancestors := {}
 	
-		
 	while queue:
 		var v = get_min_distance(queue, distances)
 		queue.erase(v)
